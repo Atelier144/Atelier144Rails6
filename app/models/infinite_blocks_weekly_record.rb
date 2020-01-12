@@ -1,0 +1,2 @@
+class InfiniteBlocksWeeklyRecord < ApplicationRecord
+end

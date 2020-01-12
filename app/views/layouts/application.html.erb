@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Atelier144</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+</head>
 
-  <body>
+
+<body>
+    <header>
+        <%= link_to("", "/", class:"logo") %>
+
+    </header>
     <%= yield %>
-  </body>
+    <footer>
+
+    </footer>
+</body>
+
 </html>

@@ -1,0 +1,2 @@
+class InfiniteBlocksYearlyRecord < ApplicationRecord
+end

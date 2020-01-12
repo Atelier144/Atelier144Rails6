@@ -54,5 +54,13 @@ class UsersController < ApplicationController
   end
 
   def twitter
+    auth_hash = request.env["omniauth.auth"]
+    @provider = auth_hash[:provider]
+    @uid = auth_hash[:uid]
+    @name = auth_hash[:info][:name]
+    @image = auth_hash[:info][:image]
+    @description = auth_hash[:info][:description]
+    @url = auth_hash[:info][:urls][:Website]
+    @twitter_url = auth_hash[:info][:urls][:Twitter]
   end
 end

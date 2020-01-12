@@ -1,0 +1,2 @@
+class InfiniteBlocksRecord < ApplicationRecord
+end

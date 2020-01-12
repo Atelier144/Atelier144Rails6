@@ -1,0 +1,2 @@
+class InfiniteBlocksMonthlyRecord < ApplicationRecord
+end

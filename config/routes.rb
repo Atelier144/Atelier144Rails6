@@ -1,33 +1,6 @@
 Rails.application.routes.draw do
-  get 'infinite_blocks/home'
-  get 'infinite_blocks/result'
-  get 'infinite_blocks/records'
-  get 'infinite_blocks/tweet_done'
-  get 'users/profile'
-  get 'users/login_form'
-  get 'users/signup_form'
-  get 'users/profile_form'
-  get 'users/profile_done'
-  get 'users/email_form'
-  get 'users/email_done'
-  get 'users/email_create_done'
-  get 'users/password_form'
-  get 'users/password_done'
-  get 'users/sns_form'
-  get 'users/sns_done'
-  get 'users/records_form'
-  get 'users/records_done'
-  get 'users/forgot_password_form'
-  get 'users/forgot_password_done'
-  get 'users/reset_password_form'
-  get 'users/reset_password_done'
-  get 'users/twitter'
-  get 'home/top'
-  get 'home/games'
-  get 'home/apps'
-  get 'home/terms'
-  get 'home/privacy'
-  get 'home/contact_form'
-  get 'home/contact_done'
+
+  root "home#top"
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
