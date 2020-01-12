@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'infinite_blocks/home'
+  get 'infinite_blocks/result'
+  get 'infinite_blocks/records'
+  get 'infinite_blocks/tweet_done'
   get 'users/profile'
   get 'users/login_form'
   get 'users/signup_form'
