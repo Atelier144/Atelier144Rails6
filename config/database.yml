@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: Atelier144_production
-  username: Atelier144
-  password: <%= ENV['ATELIER144_DATABASE_PASSWORD'] %>
+  username: <%= Rails.application.credentials.mysql[:user] %>
+  password: <%= Rails.application.credentials.mysql[:password] %>

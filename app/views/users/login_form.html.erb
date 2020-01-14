@@ -1,2 +1,16 @@
-<h1>Users#login_form</h1>
-<p>Find me in app/views/users/login_form.html.erb</p>
+<h1>ログイン</h1>
+<%= form_tag("/login",class: "form-alpha") do %>
+<input type="email" name="email" value="<%= flash[:email] %>" placeholder="メールアドレス">
+
+<input type="password" name="password" placeholder="パスワード" style="margin-top:20px">
+<% if flash[:warning] %>
+<div class="confirmation-message warning"><%= flash[:warning] %></div>
+<% end %>
+<div class="forgot-password"><%= link_to("パスワードをお忘れですか？", "/login/forgot-password")%></div>
+
+<input type="submit" value="ログイン" style="margin-top:20px">
+<h4 style="margin-top:30px">もしくは</h4>
+<%= link_to("/auth/twitter", class:"twitter", style:"margin-top:20px", method: "POST") do %><i class="fab fa-twitter"></i> Twitterでログイン<% end %>
+<hr style="margin-top:40px">
+<div class="notice" style="margin-top:20px">アカウントをお持ちでない方は<%= link_to("こちら", "/signup")%>より新規登録をお願いします。</div>
+<% end %>

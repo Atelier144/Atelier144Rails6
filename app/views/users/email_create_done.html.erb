@@ -1,2 +1,6 @@
-<h1>Users#email_create_done</h1>
-<p>Find me in app/views/users/email_create_done.html.erb</p>
+<%= render :partial => "setting_menu" %>
+<div class="form-beta">
+    <h3>メールアドレス設定完了</h3>
+    <div class="done-message">メールアドレスおよびパスワードを登録しました</div>
+    <div class="done-backlink"><%= link_to("設定画面に戻る" , "/settings/email") %></div>
+</div>

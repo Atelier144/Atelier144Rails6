@@ -1,2 +1,31 @@
-<h1>Users#sns_form</h1>
-<p>Find me in app/views/users/sns_form.html.erb</p>
+<%= render :partial => "setting_menu" %>
+
+<% if @current_user.twitter_uid.nil? %>
+<div class="form-beta">
+    <h3>SNS設定</h3>
+    <% if flash[:twitter_connection_error] %>
+    <div class="social-warning"><%= flash[:twitter_connection_error] %></div>
+    <% end %>
+    <%= link_to("/auth/twitter", class:"twitter", style:"margin-top:30px", method: "POST") do %>
+    <i class="fab fa-twitter"></i> Twitterと連携する
+    <% end %>
+</div>
+<% elsif @current_user.email %>
+<div class="form-beta">
+    <h3>SNS設定</h3>
+    <div class="social-notice">このアカウントはTwitterと連携済みです</div>
+    <%= link_to("/settings/sns/disconnect-twitter", class:"disconnect-twitter", style:"margin-top:20px", method: "POST") do %><i class="fab fa-twitter"></i> Twitterとの連携を解除する<% end %>
+</div>
+<% else %>
+<div class="form-beta">
+    <h3>SNS設定</h3>
+    <div class="social-notice">このアカウントはTwitterと連携済みです</div>
+    <div class="disabled-button" style="margin-top:20px"><i class="fab fa-twitter"></i> Twitterとの連携を解除する</div>
+    <hr style="margin-top:40px">
+    <div class="email-notice">このアカウントにはメールアドレスが登録されていません</div>
+    <div class="email-notice-description">
+        Twitterとの連携を解除するために、<%= link_to("メールアドレス設定" , "/settings/email") %>にて、メールアドレスおよびパスワードの登録を行ってください。
+        また登録後、メールアドレスでのログインが可能となります。
+    </div>
+</div>
+<% end %>

@@ -1,2 +1,32 @@
-<h1>Users#signup_form</h1>
-<p>Find me in app/views/users/signup_form.html.erb</p>
+<h1>新規登録</h1>
+<%= form_tag("/signup" , class: "form-alpha") do %>
+<h3>はじめに</h3>
+<div class="notice" style="margin-top:20px;">まず<%= link_to("利用規約","/terms")%>および<%= link_to("プライバシーポリシー","/privacy")%>をお読みください。</div>
+<hr style="margin-top:20px">
+
+<input type="text" name="name" value="<%= flash[:name] %>" placeholder="ユーザーネーム" style="margin-top:20px">
+<% if flash[:name_warning] %>
+<div class="confirmation-message warning"><%= flash[:name_warning] %></div>
+<% end %>
+
+<input type="email" name="email" value="<%= flash[:email] %>" placeholder="メールアドレス" style="margin-top:20px">
+<% if flash[:email_warning] %>
+<div class="confirmation-message warning"><%= flash[:email_warning] %></div>
+<% end %>
+
+<input type="password" name="password" value="<%= flash[:password] %>" placeholder="パスワード（8字以上、32字以下）" style="margin-top:20px">
+<% if flash[:password_warning] %>
+<div class="confirmation-message warning"><%= flash[:password_warning] %></div>
+<% end %>
+
+<input type="password" name="password_confirmation" value="<%= flash[:password_confirmation] %>" placeholder="パスワード（確認用）" style="margin-top:20px">
+<% if flash[:password_confirmation_warning] %>
+<div class="confirmation-message warning"><%= flash[:password_confirmation_warning] %></div>
+<% end %>
+
+<input id="js-signup-submit" type="submit" value="新規登録" style="margin-top:20px">
+<h4 style="margin-top:30px">もしくは</h4>
+<%= link_to("/auth/twitter", class:"twitter", style:"margin-top:20px", method: "POST") do %><i class="fab fa-twitter"></i> Twitterで新規登録<% end %>
+<hr style="margin-top:40px">
+<div class="notice" style="margin-top:20px">すでにアカウントをお持ちの方は<%= link_to("こちら", "/login")%>よりログインをお願いします。</div>
+<% end %>

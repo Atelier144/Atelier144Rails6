@@ -1,2 +1,68 @@
-<h1>Users#profile_form</h1>
-<p>Find me in app/views/users/profile_form.html.erb</p>
+<%= render :partial => "setting_menu" %>
+<%= form_tag("/settings/profile", class:"form-beta", multipart: true) do %>
+<h3>プロフィール設定</h3>
+
+<h5>ユーザー画像</h5>
+<div class="setting-image">
+    <div class="notice">
+        <h6>
+            使用可能ファイル
+        </h6>
+        <p>
+            2MB以内のgif、png、jpgファイル（推奨サイズ：400x400）
+        </p>
+    </div>
+    <%= image_tag(@current_user.image_url,id:"js-setting-image-image") %>
+    <input type="file" name="image" id="js-setting-image-file">
+    <input type="checkbox" name="is_default" id="js-setting-image-is-default">
+    <div class="select-button" style="top:170px" id="js-setting-image-select">ファイルを選択</div>
+    <div class="select-button" style="top:210px" id="js-setting-image-default">デフォルトに戻す</div>
+    <div class="file-name" id="js-setting-image-name"></div>
+    <div class="file-status status-none" id="js-setting-image-status">未選択</div>
+    <%= image_tag(@current_user.image_url, style: "display:none", id: "js-setting-image-current-image") %>
+    <%= image_tag("UserImage.png", style: "display:none", id: "js-setting-image-default-image") %>
+</div>
+
+<h5>ユーザー名（必須）</h5>
+<input type="text" name="name" value="<%= flash[:name] ? flash[:name] : @current_user.name %>">
+<% if flash[:name_warning] %>
+<div class="confirmation-message warning"><%= flash[:name_warning] %></div>
+<% end %>
+
+<h5 style="margin-top:25px">自己紹介（300字以内）</h5>
+<textarea name="description" style="height:300px"><%= flash[:description] ? flash[:description] : @current_user.description %></textarea>
+<% if flash[:description_warning] %>
+<div class="confirmation-message warning"><%= flash[:description_warning] %></div>
+<% end %>
+
+<h5 style="margin-top:25px">ホームページ</h5>
+<input type="url" name="url" value="<%= flash[:url] ? flash[:url] : @current_user.url %>">
+<% if flash[:url_warning] %>
+<div class="confirmation-message warning"><%= flash[:url_warning] %></div>
+<% end %>
+
+<h5 style="margin-top:25px">公開設定</h5>
+<div class="setting-publishments">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="is_published_profile" value="" id="check-profile" <%= @checked_profile %>>
+        <label class="form-check-label" for="check-profile">プロフィール</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="is_published_description" value="" id="check-description" <%= @checked_description %>>
+        <label class="form-check-label" for="check-description">自己紹介</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="is_published_url" value="" id="check-url" <%= @checked_url %>>
+        <label class="form-check-label" for="check-url">ホームページ</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="is_published_twitter_url" value="" id="check-twitter-url" <%= @checked_twitter_url %>>
+        <label class="form-check-label" for="check-twitter-url">Twitterアカウント</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="is_published_record" value="" id="check-record" <%= @checked_record %>>
+        <label class="form-check-label" for="check-record">ゲーム記録</label>
+    </div>
+</div>
+<input type="submit" value="更新" style="margin-top:60px">
+<% end %>

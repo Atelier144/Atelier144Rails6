@@ -30,6 +30,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'jquery-rails'
 
+gem 'js_cookie_rails'
+
 gem 'bootstrap'
 
 gem 'font-awesome-sass'

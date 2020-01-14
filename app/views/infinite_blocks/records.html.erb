@@ -1,2 +1,46 @@
-<h1>InfiniteBlocks#records</h1>
-<p>Find me in app/views/infinite_blocks/records.html.erb</p>
+<h1>Infinite Blocks</h1>
+
+<ul class="setting-menu">
+    <li>
+        <%= link_to("総合ランキング", "/games/infinite-blocks/records") %>
+    </li>
+    <li>
+        <%= link_to("年間ランキング", "/games/infinite-blocks/records/yearly") %>
+    </li>
+    <li>
+        <%= link_to("月間ランキング", "/games/infinite-blocks/records/monthly") %>
+    </li>
+    <li>
+        <%= link_to("週間ランキング", "/games/infinite-blocks/records/weekly") %>
+    </li>
+</ul>
+<div class="games-records">
+    <h3><%= @title %></h3>
+    <table class="infinite-blocks-records">
+        <thead>
+            <tr>
+                <td>Rank</td>
+                <td>User</td>
+                <td>Score</td>
+                <td>Level</td>
+                <td>Date</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% @records.each.with_index(1) do |record, rank| %>
+            <tr>
+                <td><%= rank %></td>
+                <td><%= link_to("/profiles/#{record.user.id}") do %><%= image_tag(record.user.image_url) %><% end %><%= link_to(record.user.name, "/profiles/#{record.user.id}") %></td>
+                <td><%= record.score %></td>
+                <td><%= record.level%></td>
+                <td><%= record.updated_at.strftime("%Y/%m/%d") %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+<div style="text-align:center; margin-bottom: 60px"><%= link_to("ゲームに戻る", "/games/infinite-blocks") %></div>
+<div class="sponsored-link" style="margin-bottom:100px">
+    <h6>Sponsored Link</h6>
+    <div class="ads-body">Sponsored Link</div>
+</div>

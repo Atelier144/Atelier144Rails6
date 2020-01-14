@@ -13,7 +13,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.boolean :is_published_description
       t.boolean :is_published_url
       t.boolean :is_published_twitter_url
-      t.string :is_published_record
+      t.boolean :is_published_record
       t.string :reset_password_token
 
       t.timestamps

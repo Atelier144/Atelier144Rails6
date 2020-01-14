@@ -1,2 +1,52 @@
-<h1>Users#email_form</h1>
-<p>Find me in app/views/users/email_form.html.erb</p>
+<%= render :partial => "setting_menu" %>
+
+<% if @current_user.email %>
+
+<%= form_tag("/settings/email", class: "form-beta") do %>
+<h3>メールアドレス設定</h3>
+
+<h5>現在のメールアドレス</h5>
+<input type="email" name="current_email" value="<%= flash[:current_email] %>">
+<% if flash[:current_email_warning] %>
+<div class="confirmation-message warning"><%= flash[:current_email_warning] %></div>
+<% end %>
+
+<h5 style="margin-top:20px">新しいメールアドレス</h5>
+<input type="email" name="new_email" value="<%= flash[:new_email] %>">
+<% if flash[:new_email_warning] %>
+<div class="confirmation-message warning"><%= flash[:new_email_warning] %></div>
+<% end %>
+
+<input type="submit" value="更新" style="margin-top:40px">
+<% end %>
+
+<% else %>
+
+<%= form_tag("/settings/email/create", class: "form-beta") do %>
+<h3>メールアドレス設定</h3>
+<div class="email-notice">このアカウントにはメールアドレスが登録されていません</div>
+<div class="email-notice-description">メールアドレスおよびパスワードの登録を行ってください。<br>また登録後、メールアドレスでのログインおよびSNSとの連携解除ができるようになります。</div>
+<hr style="margin-top:20px">
+
+<h5 style="margin-top:20px">メールアドレス</h5>
+<input type="email" name="email" value="<%= flash[:email] %>">
+<% if flash[:email_warning] %>
+<div class="confirmation-message warning"><%= flash[:email_warning] %></div>
+<% end %>
+
+<h5 style="margin-top:20px">パスワード（8字以上、32字以下）</h5>
+<input type="password" name="password" value="<%= flash[:password] %>">
+<% if flash[:password_warning] %>
+<div class="confirmation-message warning"><%= flash[:password_warning] %></div>
+<% end %>
+
+<h5 style="margin-top:20px">パスワード（確認用）</h5>
+<input type="password" name="password_confirmation" value="<%= flash[:password_confirmation] %>">
+<% if flash[:password_confirmation_warning] %>
+<div class="confirmation-message warning"><%= flash[:password_confirmation_warning] %></div>
+<% end %>
+
+<input type="submit" value="登録" style="margin-top:40px">
+<% end %>
+
+<% end %>

@@ -1,2 +1,80 @@
-<h1>Users#records_form</h1>
-<p>Find me in app/views/users/records_form.html.erb</p>
+<%= render :partial => "setting_menu" %>
+<div class="form-beta">
+    <h3>レコード設定</h3>
+    <div class="users-records">
+        <h4>ブラウザゲーム</h4>
+        <table class="infinite-blocks">
+            <thead>
+                <tr>
+                    <td>Infinite Blocks</td>
+                    <td style="width:60px">Rank</td>
+                    <td style="width:90px">Score</td>
+                    <td style="width:60px">Level</td>
+                    <td style="width:120px">Date</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= link_to("総合ランキング", "/games/infinite-blocks/records") %>：</td>
+                    <% if @infinite_blocks_record %>
+                    <td><%= @infinite_blocks_record.rank %></td>
+                    <td><%= @infinite_blocks_record.score %></td>
+                    <td><%= @infinite_blocks_record.level %></td>
+                    <td><%= @infinite_blocks_record.updated_at.strftime("%Y/%m/%d") %></td>
+                    <% else %>
+                    <td>ー</td>
+                    <td>ー</td>
+                    <td>ー</td>
+                    <td>ー</td>
+                    <% end %>
+                </tr>
+                <tr>
+                    <td><%= link_to("年間ランキング", "/games/infinite-blocks/records/yearly") %>：</td>
+                    <% if @infinite_blocks_yearly_record %>
+                    <td><%= @infinite_blocks_yearly_record.rank %></td>
+                    <td><%= @infinite_blocks_yearly_record.score %></td>
+                    <td><%= @infinite_blocks_yearly_record.level %></td>
+                    <td><%= @infinite_blocks_yearly_record.updated_at.strftime("%Y/%m/%d") %></td>
+                    <% else %>
+                    <td>ー</td>
+                    <td>ー</td>
+                    <td>ー</td>
+                    <td>ー</td>
+                    <% end %>
+                </tr>
+                <tr>
+                    <td><%= link_to("月間ランキング", "/games/infinite-blocks/records/monthly") %>：</td>
+                    <% if @infinite_blocks_monthly_record %>
+                    <td><%= @infinite_blocks_monthly_record.rank %></td>
+                    <td><%= @infinite_blocks_monthly_record.score %></td>
+                    <td><%= @infinite_blocks_monthly_record.level %></td>
+                    <td><%= @infinite_blocks_monthly_record.updated_at.strftime("%Y/%m/%d") %></td>
+                    <% else %>
+                    <td>ー</td>
+                    <td>ー</td>
+                    <td>ー</td>
+                    <td>ー</td>
+                    <% end %>
+                </tr>
+                <tr>
+                    <td><%= link_to("週間ランキング", "/games/infinite-blocks/records/weekly") %>：</td>
+                    <% if @infinite_blocks_weekly_record %>
+                    <td><%= @infinite_blocks_weekly_record.rank %></td>
+                    <td><%= @infinite_blocks_weekly_record.score %></td>
+                    <td><%= @infinite_blocks_weekly_record.level %></td>
+                    <td><%= @infinite_blocks_weekly_record.updated_at.strftime("%Y/%m/%d") %></td>
+                    <% else %>
+                    <td>ー</td>
+                    <td>ー</td>
+                    <td>ー</td>
+                    <td>ー</td>
+                    <% end %>
+                </tr>
+            </tbody>
+        </table>
+        <div id="js-records-delete-infinite-blocks-button" class="delete-records-button" style="margin-top:20px">削除</div>
+    </div>
+</div>
+<%= form_tag("/settings/records/delete/infinite-blocks", class: "form-hidden") do %>
+<input type="submit" id="js-records-delete-infinite-blocks">
+<% end %>

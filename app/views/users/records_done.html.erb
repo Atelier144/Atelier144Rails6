@@ -1,2 +1,6 @@
-<h1>Users#records_done</h1>
-<p>Find me in app/views/users/records_done.html.erb</p>
+<%= render :partial => "setting_menu" %>
+<div class="form-beta">
+    <h3><%= @title %></h3>
+    <div class="done-message"><%= @message %></div>
+    <div class="done-backlink"><%= link_to("設定画面に戻る" , "/settings/records") %></div>
+</div>

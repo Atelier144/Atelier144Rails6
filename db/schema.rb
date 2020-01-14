@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_222754) do
+ActiveRecord::Schema.define(version: 2020_01_13_040334) do
 
   create_table "infinite_blocks_monthly_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.integer "user_id"
@@ -63,10 +63,11 @@ ActiveRecord::Schema.define(version: 2020_01_12_222754) do
     t.boolean "is_published_description"
     t.boolean "is_published_url"
     t.boolean "is_published_twitter_url"
-    t.string "is_published_record"
     t.string "reset_password_token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "twitter_image"
+    t.boolean "is_published_record"
   end
 
 end
