@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   end
 
   def games
+    puts Rails.application.credentials.twitter_api[:key]
   end
 
   def apps
