@@ -30,7 +30,7 @@ class InfiniteBlocksController < ApplicationController
       @records = InfiniteBlocksMonthlyRecord.where("updated_at >= ?", Date.today.prev_month(1)).order(score: :desc).order(level: :desc).order(updated_at: :desc)
     when "weekly"
       @title = "週間ランキング"
-      @records = InfiniteBlocksYearlyRecord.where("updated_at >= ?", Date.today.prev_year(1)).order(score: :desc).order(level: :desc).order(updated_at: :desc)
+      @records = InfiniteBlocksYearlyRecord.where("updated_at >= ?", Date.today.prev_day(7)).order(score: :desc).order(level: :desc).order(updated_at: :desc)
     else
       @title = "総合ランキング"
       @records = InfiniteBlocksRecord.all.order(score: :desc).order(level: :desc).order(updated_at: :desc)
