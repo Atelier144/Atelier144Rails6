@@ -480,6 +480,8 @@ class UsersController < ApplicationController
     @description = auth_hash[:info][:description]
     @url = auth_hash[:info][:urls][:Website]
     @twitter_url = auth_hash[:info][:urls][:Twitter]
+    @access_token = auth_hash[:credentials][:token]
+    @access_token_secret = auth_hash[:credentials][:secret]
   end
 
   def twitter_post
@@ -492,6 +494,11 @@ class UsersController < ApplicationController
           redirect_to("/settings/sns")
         else
           puts "Twitter Login"
+          if twitter_user.twitter_access_token.nil?
+            twitter_user.twitter_access_token = params[:access_token]
+            twitter_user.twitter_access_token_secret = params[:access_token_secret]
+            twitter_user.save
+          end
           session[:user_id] = twitter_user.id
           redirect_to("/")
         end
@@ -501,6 +508,8 @@ class UsersController < ApplicationController
           current_user = User.find_by(id: session[:user_id])
           current_user.twitter_uid = params[:uid]
           current_user.twitter_url = params[:twitter_url]
+          current_user.twitter_access_token = params[:access_token]
+          current_user.twitter_access_token_secret = params[:access_token_secret]
           if current_user.save
             redirect_to("/settings/sns/done/connect-twitter")
           else
@@ -524,6 +533,8 @@ class UsersController < ApplicationController
             is_published_url: true,
             is_published_twitter_url: true,
             is_published_record: true,
+            twitter_access_token: params[:access_token],
+            twitter_access_token_secret: params[:access_token_secret]
           )
 
           index = 1
@@ -554,6 +565,8 @@ class UsersController < ApplicationController
     if user.email
       user.twitter_uid = nil
       user.twitter_url = nil
+      user.twitter_access_token = nil
+      user.twitter_access_token_secret = nil
       if user.save
         redirect_to("/settings/sns/done/disconnect-twitter")
       else

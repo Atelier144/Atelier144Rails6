@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_13_040334) do
+ActiveRecord::Schema.define(version: 2020_01_29_102037) do
 
   create_table "infinite_blocks_monthly_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.integer "user_id"
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 2020_01_13_040334) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "twitter_image"
     t.boolean "is_published_record"
+    t.string "twitter_access_token"
+    t.string "twitter_access_token_secret"
   end
 
 end
