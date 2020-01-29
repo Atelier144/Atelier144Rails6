@@ -3,7 +3,13 @@ class ApplicationController < ActionController::Base
   
   def set_current_user
     @current_user = User.find_by(id: session[:user_id])
-    session[:user_id] = nil if @current_user.nil?
+    if @current_user.nil?
+      session[:user_id] = nil
+    else
+      if @current_user.twitter_uid && @current_user.twitter_access_token.nil?
+        session[:user_id] = nil
+      end
+    end
   end
 
   def authenticate_user
